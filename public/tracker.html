@@ -1,0 +1,112 @@
+<html>
+<head>
+    <title>GrassChain</title>
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/agency.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/font.css">
+</head>
+
+<body style="font-family: 'Nanum Square'">
+
+
+<section id = new style="background-color: white; align-items: center">
+    <div class="col-lg-12 text-center">
+        <h2 class="section-heading" style="text-transform:none; font-size:55px">GSC Tracker</h2>
+        <h3 class="section-subheading text-muted">GrassChain Supply Contract를 바로 생성해보세요. 투명하고, 안전합니다!</h3>
+    </div>
+
+    <fieldset style="width:90%; margin-left: 5%; margin-right: 5%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
+        <h1 style="text-align: center; font-weight:700; margin-top:5%; margin-bottom: 5%">GSC 표준 계약서</h1>
+        <label> <span style="font-size:20px; font-weight:700">공급망 주소 목록</span> <br> 형식 : ["주소1", "주소2", ...]<br>
+            <input class="form-control" style="width:500px" type="text" id="addrList">
+        </label><br><br>
+        <label> <span style="font-size:20px; font-weight:700">판매 대금 분배 비율</span> <br> 형식 : ["10", "30", ...]<br>
+            <input class="form-control" style="width:500px" type="text" id="distList">
+        </label><br><br>
+        <label> <span style="font-size:20px; font-weight:700">생산자 담보(Deposit) 금액</span> <br>
+            <input class="form-control" style="width:150px" type="text" id="deposit">Ether
+        </label><br><br>
+        <label> <span style="font-size:20px; font-weight:700">소비자 지불 예정 금액</span> <br>
+            <input class="form-control" style="width:150px" type="text" id="value">Ether
+        </label><br><br><br><br>
+
+        <button class="btn btn-xl" onclick="create()" style="height : 50px; width:30%; margin-left: 35%; margin-right: 35%">Create GSC!</button><br><br>
+
+        <label> <span style="font-size:20px; font-weight:700">Result</span>
+        </label>
+        <div class="form-control" style="height: 100px; overflow: scroll" id="response"></div>
+    </fieldset>
+</section>
+
+
+
+
+<script>
+    function trackPage(){
+        window.open("index_alarm.html", "설립공고", "width=700,height=700,history=no,resizable=no,status=yes,scrollbars=no,menubar=yes")
+    }
+
+    // MetaMask injects the web3 library for us.
+    window.onload = function () {
+        if (typeof web3 === 'undefined') {
+            document.getElementById('meta-mask-required').innerHTML = 'You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this example'
+        }
+    }
+
+    function track() {
+        //var GchContract = new web3.eth.Contract()
+        //GchContract.methods.myMethod(123).call()  //가스비 없이 데이터만 조회
+
+        web3.eth.sendTransaction({
+            from: web3.eth.coinbase,
+            to: '0xeB559d8531a6caeC28389C96b4075a2A641F1d6D',
+            value: web3.toWei(document.getElementById("deposit").value, 'ether')
+        }, function (error, result) {
+            if (!error) {
+                document.getElementById('response').innerHTML = 'Success: <a href="https://ropsten.etherscan.io/tx/' + result + '"> View Transaction </a>'
+            } else {
+                document.getElementById('response').innerHTML = '<pre>' + error + '</pre>'
+            }
+        })
+    }
+</script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/popper.js"></script>
+<script src="javascripts/bootstrap.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="javascripts/jquery.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="javascripts/agency.js"></script>
+
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; 2018 GrassChain by Haryun<br />Designed by Haryun Shin</span>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline quicklinks">
+                    <li class="list-inline-item">
+                        <a>Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a>Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

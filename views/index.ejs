@@ -1,0 +1,446 @@
+<html>
+<head>
+    <title>GrassChain</title>
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/agency.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="stylesheets/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/font.css">
+</head>
+
+<body style="font-family: 'Nanum Square'">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="height:6%; background-color: rgba(10,19,10, 0.8)">
+    <a class="navbar-brand" href="/"><img src="images/GrassChainLogoSlim.png" width="auto" height="65" style="margin-top:9px"/></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#new">New GSC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-target="#trackPage" data-toggle="modal">Track GSC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-target="#verifyPage" data-toggle="modal">Verify GSC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-target="#purchasePage" data-toggle="modal">Purchase</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<header class="masthead">
+    <div class="container">
+        <div class="intro-text">
+            <div style="background-color:rgba(10, 10, 10, 0.7); padding : 3%; height : 55%; width : 100%" >
+                <div class="intro-heading"><img src="images/GrassChainLogo.png" style="margin-top: 10px;"/></div>
+                <h1 style="margin-top:1%">Welcome to GrassChain Beta Page!</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id = new style="background-color: white; align-items: center">
+    <div class="col-lg-12 text-center">
+        <h2 class="section-heading" style="text-transform:none; font-size:55px">Create New GSC<br><span style="font-size: 20px">(GrassChain Supply Contract)</span></h2>
+        <h3 class="section-subheading text-muted">GrassChain Supply Contract를 바로 생성해보세요. 투명하고, 안전합니다!</h3>
+    </div>
+
+    <fieldset style="width:50%; margin-left: 25%; margin-right: 25%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
+        <h1 style="text-align: center; font-weight:700; margin-top:5%; margin-bottom: 5%">GSC 표준 계약서</h1>
+        <label> <span style="font-size:20px; font-weight:700">공급망 주소 목록</span> <br> 형식 : "주소1","주소2",...<br>
+            <input class="form-control" style="width:500px" type="text" id="addrList">
+        </label><br><br>
+        <label> <span style="font-size:20px; font-weight:700">판매 대금 분배 비율</span> <br> 형식 : 10,20,50,...<br>
+            <input class="form-control" style="width:500px" type="text" id="distList">
+        </label><br><br>
+        <label> <span style="font-size:20px; font-weight:700">생산자 담보(Deposit) 금액</span> <br>
+            <input class="form-control" style="width:150px" type="text" id="deposit">Ether
+        </label><br><br>
+        <label> <span style="font-size:20px; font-weight:700">소비자 지불 예정 금액</span> <br>
+            <input class="form-control" style="width:150px" type="text" id="value">Ether
+        </label><br><br><br><br>
+
+        <button class="btn btn-xl" onclick="create()" style="height : 50px; width:30%; margin-left: 35%; margin-right: 35%">Create GSC!</button><br><br>
+
+        <label> <span style="font-size:20px; font-weight:700">Result</span>
+        </label>
+        <div class="form-control" style="height: 100px; overflow: scroll" id="response"></div>
+    </fieldset>
+</section>
+
+<section id="services" style="background-color: rgb(240, 240, 240)">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading" style="text-transform:none; font-size:55px">GSC Management</h2>
+                <h3 class="section-subheading text-muted">Click icon to Track, Verify, and Purchase!</h3>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-chain fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
+            </span>
+                <h2 class="service-heading">Track</h2>
+                <p class="text-muted">GSC를 추적해보세요! 가장 투명한 유통 기록입니다.<br>Ethereum 블록체인 플랫폼을 기반으로 운영됩니다.</p>
+                <button class="btn btn-default" data-target="#trackPage" data-toggle="modal" style="width: 30%">Track</button><br/>
+            </div>
+
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-check-square-o fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
+            </span>
+                <h2 class="service-heading">Verify</h2>
+                <p class="text-muted">중간 유통자라면, 유통 단계를 마치고 인증하세요!<br>소비자의 결제 직후 유통 수수료가 분배됩니다.</p>
+                <button class="btn btn-default" data-target="#verifyPage" data-toggle="modal" style="width: 30%">Verify</button><br/>
+            </div>
+
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-credit-card fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
+            </span>
+                <h2 class="service-heading">Purchase</h2>
+                <p class="text-muted">GSC를 통해 농산물을 구매하려면 바로 결제하세요!<br>Metamask 지갑의 Ether로 결제할 수 있습니다.</p>
+                <button class="btn btn-default" data-target="#purchasePage" data-toggle="modal" style="width: 30%">Purchase</button><br/>
+            </div>
+        </div>
+        <h1 id="gscCounter" style="text-align: center; margin-top: 100px">현재 총 @개의 GSC가 생성되었습니다.</h1>
+    </div>
+
+
+    <div class="modal fade" id="trackPage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">GSC Tracker</h4>
+                    <button class="btn btn-xl" onclick="track()">Track GSC!</button>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <fieldset style="width:100%; margin-left: 0%; margin-right: 0%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 20px; font-family: 'Nanum Square'">
+                        <label> <span style="font-size:20px; font-weight:700">GSC ID</span>
+                            <input class="form-control" type="text" id="trackID">
+                        </label><br>
+
+                        <label> <span style="font-size:20px; font-weight:700">Result</span></label>
+                        <div class="form-control" style="height: 470px; overflow: scroll; word-break: break-all" id="trackResponse"></div>
+
+                    </fieldset>
+                </div>
+                <!-- Footer -->
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="verifyPage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">GSC Verify</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <fieldset style="width:100%; margin-left: 0%; margin-right: 0%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
+                        <label> <span style="font-size:20px; font-weight:700">GSC ID</span> <br>
+                            <input class="form-control" style="width:150px" type="text" id="verifyID">
+                        </label><br><br>
+                        <label> <span style="font-size:20px; font-weight:700">특이 사항</span> <br>
+                            <input class="form-control" style="width:150px" type="text" id="flag">[ 0 : 문제없음 / 1 : 문제 발생 / 2 : 거래 취소 ]
+                        </label><br><br><br>
+
+                        <button class="btn btn-xl" onclick="verify()" style="height : 50px; width:30%; margin-left: 35%; margin-right: 35%">Verify GSC!</button><br>
+                        <label class="text-danger">본인이 취급한 상품의 유통 단계 완료를 인증함. 취소 불가능.</label>
+                        <br><br>
+
+                        <label> <span style="font-size:20px; font-weight:700">Result</span>
+                        </label>
+                        <div class="form-control" style="height: 100px; overflow: scroll" id="verifyResponse"></div>
+                    </fieldset>
+                </div>
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="purchasePage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">GSC Payment</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <fieldset style="width:100%; margin-left: 0%; margin-right: 0%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
+                        <label> <span style="font-size:20px; font-weight:700">GSC ID</span><br>
+                           <input class="form-control" style="width:150px" type="text" id="payID">
+                        </label><br><br>
+                        <label> <span style="font-size:20px; font-weight:700">Price(ether) </span><button class="btn btn-xl" onclick="payCheck()">Check</button> </label><br>
+                        <div class="form-control" style="height: 40px; overflow: scroll" id="Gprice"></div>
+
+                        <br><br><button class="btn btn-xl" onclick="pay()" style="height : 50px; width:30%; margin-left: 35%; margin-right: 35%">Purchase!</button><br><br>
+
+                        <label> <span style="font-size:20px; font-weight:700">Result</span>
+                        </label>
+                        <div class="form-control" style="height: 200px; overflow: scroll" id="payResponse"></div>
+                    </fieldset>
+                </div>
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+    const ABI = [{"constant":true,"inputs":[],"name":"GSCCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"GSCID","type":"uint256"}],"name":"getGSCHistory","outputs":[{"name":"history","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"GSCList","outputs":[{"name":"mainWallet","type":"address"},{"name":"value","type":"uint256"},{"name":"deposit","type":"uint256"},{"name":"Gchain_all","type":"uint256"},{"name":"status","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"GSCID","type":"uint256"}],"name":"verify","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"GSCID","type":"uint256"}],"name":"getGSCRatio","outputs":[{"name":"ratio","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"GSCID","type":"uint256"}],"name":"pay","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"GSCID","type":"uint256"}],"name":"getGSCAddr","outputs":[{"name":"Gchain","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"Gchain","type":"address[]"},{"name":"value","type":"uint256"},{"name":"ratio","type":"uint256[]"}],"name":"createGSC","outputs":[{"name":"GSCID","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"GSCID","type":"uint256"}],"name":"abort","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"GSCID","type":"uint256"}],"name":"getGSCTimestamp","outputs":[{"name":"timestamp","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[],"name":"aborted","type":"event"},{"anonymous":false,"inputs":[],"name":"purchaseConfirmed","type":"event"},{"anonymous":false,"inputs":[],"name":"paymentDone","type":"event"}];
+    const contractAddr = "0xE8720CB8b80ffb4D93BeE736C624dc547603fc49";
+
+    // MetaMask injects the web3 library
+    window.onload = function () {
+        var GchContract = web3.eth.contract(ABI).at(contractAddr);
+
+        if (typeof web3 === 'undefined') {
+            document.getElementById('meta-mask-required').innerHTML = 'You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this example'
+        }
+        GchContract.GSCCount.call(function (error, result) {
+            if (!error) {
+                console.log(result);
+                document.getElementById('gscCounter').innerHTML = '<h2>현재 총 ' + result + '개의 GSC가 생성되었습니다.</h2>'
+            } else {
+                document.getElementById('payResponse').innerHTML = '<pre>' + error + '</pre>'
+            }
+        });
+    }
+
+    function create() {
+        var GchContract = web3.eth.contract(ABI).at(contractAddr);
+
+        var Gchain;
+        var Value = web3.toWei(document.getElementById("value").value, 'ether');
+        var Ratio;// = [8, 8, 8];
+        Gchain = new Array();
+        Ratio = new Array();
+        Gchain = document.getElementById("addrList").value.split(',');
+        Ratio = document.getElementById("distList").value.split(',');
+
+        GchContract.createGSC(Gchain, Value, Ratio, {
+            from: web3.eth.coinbase,
+            to: contractAddr,
+            value: web3.toWei(document.getElementById("deposit").value, 'ether')
+        }, function (error, result) {
+            if (!error) {
+                console.log(result);
+                document.getElementById('response').innerHTML = 'Success: <a href="https://ropsten.etherscan.io/tx/' + result + '"> View Transaction </a>'
+            } else {
+                document.getElementById('response').innerHTML = '<pre>' + error + '</pre>'
+            }
+        });
+
+        /*
+        web3.eth.sendTransaction({
+            from: web3.eth.coinbase,
+            to: '0x7D8446EeD5aC0F6bc5A0FA139a75de62506151c7',
+            value: web3.toWei(document.getElementById("deposit").value, 'ether')
+        }, function (error, result) {
+            if (!error) {
+                document.getElementById('response').innerHTML = 'Success: <a href="https://ropsten.etherscan.io/tx/' + result + '"> View Transaction </a>'
+            } else {
+                document.getElementById('response').innerHTML = '<pre>' + error + '</pre>'
+            }
+        })
+        */
+    }
+
+    function track() {
+        var GchContract = web3.eth.contract(ABI).at(contractAddr);
+        var GSCID = document.getElementById("trackID").value;
+        var Ratio = new Array();
+        var Gdat = new Array();
+        var Ghistory = new Array();
+        var Gtimestamp = new Array();
+
+        GchContract.GSCList.call(GSCID, function (error, result) {
+            if (!error) {
+                console.log(result);
+                Gdat = result;
+            } else {
+                document.getElementById('verifyResponse').innerHTML = '<pre>' + error + '</pre>'
+            }
+        });
+        GchContract.getGSCRatio.call(GSCID, function (error, result) {
+            if (!error) {
+                console.log(result);
+                Ratio = result[0];
+            } else {
+                console.log("error");
+            }
+        });
+        GchContract.getGSCHistory.call(GSCID, function (error, result) {
+            if (!error) {
+                console.log(result);
+                Ghistory = result;
+            } else {
+                console.log("error");
+            }
+        });
+        GchContract.getGSCTimestamp.call(GSCID, function (error, result) {
+            if (!error) {
+                console.log(result);
+                Gtimestamp = result;
+            } else {
+                console.log("error");
+            }
+        });
+        GchContract.getGSCAddr.call(GSCID, function (error, result) {
+            if (!error) {
+                console.log(result);
+                var Response =
+                    'Track Success!<br><br>GSC ID : '
+                    + GSCID + '<br>GSC Status : ' + Gdat[4] +
+                    '<br>Item Price : '
+                    + web3.fromWei(Gdat[1], 'ether') +
+                    '(ether)'
+                    +'<br>Producer Deposit : '
+                    + web3.fromWei(Gdat[2], 'ether') +
+                    '(ether)'
+                    +
+                    '<br><br>Address List : <br>';
+                var n;
+                for(n = 0; n<result.length; n++){
+                    Response = Response + '<a href="https://ropsten.etherscan.io/address/' + result[n] + '">' + result[n] + '</a><br>';
+                }
+                Response += '<br>Supply History : <br>';
+                for(n = GSCID; n<Ghistory.length; n++){
+                    var sysdate = new Date(Gtimestamp[n]*1000);
+                    if (Gtimestamp[n] == 0) continue;
+                    Response = Response + '<a href="https://ropsten.etherscan.io/address/' + Ghistory[n] + '">' + Ghistory[n] + '</a><br>' + sysdate.toLocaleDateString() +' ' +sysdate.toLocaleTimeString()+'<br>';
+                }
+                Response += '<br>Master Wallet : <br>' + '<a href="https://ropsten.etherscan.io/address/' + Gdat[0] + '">' + Gdat[0] + '</a><br>'
+                document.getElementById('trackResponse').innerHTML = Response;
+            } else {
+                document.getElementById('trackResponse').innerHTML = '<pre>' + error + '</pre>'
+            }
+        });
+    }
+
+    function verify() {
+        var GchContract = web3.eth.contract(ABI).at(contractAddr);
+        var GSCID = document.getElementById("verifyID").value;
+        GchContract.verify(GSCID, {
+            from: web3.eth.coinbase,
+            to: contractAddr,
+            value: '0'//web3.toWei('0', 'ether')
+        }, function (error, result) {
+            if (!error) {
+                console.log(result);
+                document.getElementById('verifyResponse').innerHTML = 'Success: <a href="https://ropsten.etherscan.io/tx/' + result + '"> View Transaction </a>'
+            } else {
+                document.getElementById('verifyResponse').innerHTML = '<pre>' + error + '</pre>'
+            }
+        });
+    }
+
+    function payCheck() {
+        var GchContract = web3.eth.contract(ABI).at(contractAddr);
+        var GSCID = document.getElementById("payID").value;
+
+        GchContract.GSCList.call(GSCID, function (error, result) {
+            if (!error) {
+                console.log(result);
+                document.getElementById('Gprice').innerHTML = web3.fromWei(result[1], 'ether');
+            } else {
+            }
+        });
+
+    }
+
+    function pay() {
+        var GchContract = web3.eth.contract(ABI).at(contractAddr);
+        var GSCID = document.getElementById("payID").value;
+
+        GchContract.pay(1, {
+            from: web3.eth.coinbase,
+            to: contractAddr,
+            value: web3.toWei(document.getElementById('Gprice').innerHTML, 'ether')
+        }, function (error, result) {
+            if (!error) {
+                console.log(result);
+                document.getElementById('payResponse').innerHTML = 'Success: <a href="https://ropsten.etherscan.io/tx/' + result + '"> View Transaction </a>'
+            } else {
+                document.getElementById('payResponse').innerHTML = '<pre>' + error + '</pre>'
+            }
+        });
+        /*
+        GchContract.pay(GSCID, {
+            from: web3.eth.coinbase,
+            to: contractAddr,
+            value: Value[1]
+        }, function (error, result) {
+            if (!error) {
+                console.log(result);
+                document.getElementById('payResponse').innerHTML = 'Success: <a href="https://ropsten.etherscan.io/tx/' + result + '"> View Transaction </a>'
+            } else {
+                document.getElementById('payResponse').innerHTML = '<pre>' + error + '</pre>'
+            }
+        });
+        */
+    }
+
+</script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/popper.js"></script>
+<script src="javascripts/bootstrap.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="javascripts/jquery.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="javascripts/agency.js"></script>
+
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; 2018 GrassChain by Haryun<br />Designed by Haryun Shin</span>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline quicklinks">
+                    <li class="list-inline-item">
+                        <a>Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a>Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
