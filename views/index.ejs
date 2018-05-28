@@ -29,6 +29,9 @@
             <li class="nav-item">
                 <a class="nav-link" data-target="#purchasePage" data-toggle="modal">Purchase</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-target="#qrPage" data-toggle="modal">QR Code Tool</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -207,6 +210,44 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="qrPage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">QR Code Tool</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <fieldset style="width:100%; margin-left: 0%; margin-right: 0%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
+                        <label> <span style="font-size:20px; font-weight:700">GSC ID</span><br>
+                            <input class="form-control" style="width:150px" type="text" id="qrID">
+                        </label><br><br>
+
+                        <button class="btn btn-xl" onclick="createTag()" style="height : 50px; width:50%; margin-left: 25%; margin-right: 25%">Create Tag</button><br><br>
+
+                        <label> <span style="font-size:20px; font-weight:700">QR Code GSC Tag</span>
+                        </label>
+                        <div id = tag class="form-control" style="height: 230px; overflow: hidden;">
+                            <div id="qrcode" style="width:100px; height:100px; margin-top:5px; display: inline-block"></div>
+                            <div style="display: inline-block">
+                                <img src="images/GrassChainLogo.png" style="height: 70px; width: auto;margin-left:16%; margin-top: -50%">
+                            </div>
+                            <div id = "qrResponse" style="border-top: 2px solid limegreen; padding:5%; width:370px">
+                            </div>
+                        </div>
+
+                        <br><button class="btn btn-xl" onclick="printTag()" style="height : 35px; width:50%; margin-left: 25%; margin-right: 25%">Print Tag</button>
+                    </fieldset>
+                </div>
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 
@@ -234,12 +275,9 @@
 
     function create() {
         var GchContract = web3.eth.contract(ABI).at(contractAddr);
-
         var Gchain;
         var Value = web3.toWei(document.getElementById("value").value, 'ether');
         var Ratio;// = [8, 8, 8];
-        Gchain = new Array();
-        Ratio = new Array();
         Gchain = document.getElementById("addrList").value.split(',');
         Ratio = document.getElementById("distList").value.split(',');
 
@@ -255,20 +293,43 @@
                 document.getElementById('response').innerHTML = '<pre>' + error + '</pre>'
             }
         });
+    }
 
-        /*
-        web3.eth.sendTransaction({
-            from: web3.eth.coinbase,
-            to: '0x7D8446EeD5aC0F6bc5A0FA139a75de62506151c7',
-            value: web3.toWei(document.getElementById("deposit").value, 'ether')
-        }, function (error, result) {
+    function createTag() {
+        var GchContract = web3.eth.contract(ABI).at(contractAddr);
+        var GSCID = document.getElementById("qrID").value;
+        var Response;
+        var Gdat = new Array();
+
+        GchContract.GSCList.call(GSCID, function (error, result) {
             if (!error) {
-                document.getElementById('response').innerHTML = 'Success: <a href="https://ropsten.etherscan.io/tx/' + result + '"> View Transaction </a>'
+                console.log(result);
+                Gdat = result;
+
+                Response = 'GSC ID : ' + GSCID + '<br>Item Price : ' + web3.fromWei(Gdat[1], 'ether') + '(ether)' +'<br>Producer Deposit : ' + web3.fromWei(Gdat[2], 'ether') + '(ether)';
+                document.getElementById('qrResponse').innerHTML = Response;
             } else {
-                document.getElementById('response').innerHTML = '<pre>' + error + '</pre>'
+                document.getElementById('qrResponse').innerHTML = '<pre>' + error + '</pre>'
             }
-        })
-        */
+        });
+        document.getElementById("qrcode").innerHTML = "";
+        var qrCode = new QRCode(document.getElementById("qrcode"), {
+            width : 100,
+            height : 100
+        });
+        qrCode.makeCode("GSC ID : "+GSCID);
+    }
+
+    function printTag(){
+        var initBody = document.body.innerHTML;
+
+        window.onbeforeprint = function () {
+            document.body.innerHTML = document.getElementById("tag").innerHTML;
+        }
+        window.onafterprint = function () {
+            document.body.innerHTML = initBody;
+        }
+        window.print();
     }
 
     function track() {
@@ -415,6 +476,7 @@
 
 <!-- Plugin JavaScript -->
 <script src="javascripts/jquery.js"></script>
+<script src="javascripts/qrcode.js"></script>
 
 <!-- Custom scripts for this template -->
 <script src="javascripts/agency.js"></script>
