@@ -229,13 +229,15 @@
 
                         <label> <span style="font-size:20px; font-weight:700">QR Code GSC Tag</span>
                         </label>
-                        <div id = tag class="form-control" style="height: 230px; overflow: hidden;">
+                        <div id = tag>
+                        <div class="form-control" style="height: 230px; overflow: hidden; width:390px">
                             <div id="qrcode" style="width:100px; height:100px; margin-top:5px; display: inline-block"></div>
                             <div style="display: inline-block">
                                 <img src="images/GrassChainLogo.png" style="height: 70px; width: auto;margin-left:16%; margin-top: -50%">
                             </div>
                             <div id = "qrResponse" style="border-top: 2px solid limegreen; padding:5%; width:370px">
                             </div>
+                        </div>
                         </div>
 
                         <br><button class="btn btn-xl" onclick="printTag()" style="height : 35px; width:50%; margin-left: 25%; margin-right: 25%">Print Tag</button>
