@@ -3306,6 +3306,7 @@ tbody.collapse.show {
 }
 
 .navbar-collapse {
+
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   -ms-flex-align: center;
@@ -3430,14 +3431,16 @@ tbody.collapse.show {
 @media (max-width: 991px) {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid {
-    padding-right: 0;
-    padding-left: 0;
+      padding-right: 0;
+      padding-left: 0;
   }
 }
 
 @media (min-width: 992px) {
   .navbar-expand-lg {
-    -ms-flex-direction: row;
+      height:55px;
+
+      -ms-flex-direction: row;
         flex-direction: row;
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
