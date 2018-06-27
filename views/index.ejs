@@ -11,10 +11,7 @@
 <body style="font-family: 'Nanum Square'">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style=" background-color: rgba(10,19,10, 0.8)">
     <a class="navbar-brand" href="/"><img src="images/GrassChainLogoSlim.png" width="auto" height="65" style="margin-top:9px"/></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fa fa-bars"></i>
-    </button>
+
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -57,10 +54,10 @@
     <fieldset style="width:70%; margin-left: 15%; margin-right: 15%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
         <h1 style="text-align: center; font-weight:700; margin-top:5%; margin-bottom: 5%">GSC 표준 계약서</h1>
         <label> <span style="font-size:20px; font-weight:700">공급망 주소 목록</span> <br> 형식 : 0x123,0xaba,...<br>
-            <input class="form-control" style="width:300%" type="text" id="addrList">
+            <input class="form-control" style="width:500%" type="text" id="addrList">
         </label><br><br>
         <label> <span style="font-size:20px; font-weight:700">판매 대금 분배 비율</span> <br> 형식 : 10,20,50,...<br>
-            <input class="form-control" style="width:300%" type="text" id="distList">
+            <input class="form-control" style="width:500%" type="text" id="distList">
         </label><br><br>
         <label> <span style="font-size:20px; font-weight:700">생산자 담보(Deposit) 금액</span> <br>
             <input class="form-control" style="width:100%" type="text" id="deposit">Ether
@@ -81,41 +78,57 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading" style="text-transform:none; font-size:55px">GSC Management</h2>
-                <h3 class="section-subheading text-muted">Click icon to Track, Verify, and Purchase!</h3>
+                <h2 class="section-heading" style="text-transform:none; font-size:55px">GrassChain Apps</h2>
+                <h3 class="section-subheading text-muted">Various GrassChain-based Apps!</h3>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-md-4">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-4x" data-target="#trackPage" data-toggle="modal">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-chain fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
             </span>
                 <h2 class="service-heading">Track</h2>
                 <p class="text-muted">GSC를 추적해보세요! 가장 투명한 유통 기록입니다.<br>Ethereum 블록체인 플랫폼을 기반으로 운영됩니다.</p>
-                <button class="btn btn-default" data-target="#trackPage" data-toggle="modal" style="width: 60%">Track</button><br/>
             </div>
 
             <div class="col-md-4">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-4x" data-target="#verifyPage" data-toggle="modal">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-check-square-o fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
+              <i class="fa fa-check-square-o fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%;"></i>
             </span>
                 <h2 class="service-heading">Verify</h2>
                 <p class="text-muted">중간 유통자라면, 유통 단계를 마치고 인증하세요!<br>소비자의 결제 직후 유통 수수료가 분배됩니다.</p>
-                <button class="btn btn-default" data-target="#verifyPage" data-toggle="modal" style="width: 60%">Verify</button><br/>
             </div>
 
             <div class="col-md-4">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-4x" data-target="#purchasePage" data-toggle="modal">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-credit-card fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
             </span>
                 <h2 class="service-heading">Purchase</h2>
                 <p class="text-muted">GSC를 통해 농산물을 구매하려면 바로 결제하세요!<br>Metamask 지갑의 Ether로 결제할 수 있습니다.</p>
-                <button class="btn btn-default" data-target="#purchasePage" data-toggle="modal" style="width: 60%">Purchase</button><br/>
             </div>
         </div>
+        <div class="row text-center" style="margin-top:5%">
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x" data-target="#qrPage" data-toggle="modal">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-qrcode fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
+            </span>
+                <h2 class="service-heading">QR Code</h2>
+                <p class="text-muted">GSC 태그의 QR 코드를 출력할 수 있는 툴입니다.<br>다양한 정보를 담은 태그를 인쇄할 수 있습니다.</p>
+            </div>
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-question fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
+            </span>
+                <h2 class="service-heading">Next GrApp</h2>
+                <p class="text-muted">What's next GrassChain APP?<br>Coming Soon!</p>
+            </div>
+        </div>
+
         <h1 id="gscCounter" style="text-align: center; margin-top: 100px">현재 총 @개의 GSC가 생성되었습니다.</h1>
     </div>
 
@@ -179,9 +192,9 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="purchasePage" style="width: 100%;">
-        <div class="modal-dialog">
-            <div class="modal-content" style="width:1000px">
+    <div class="modal fade" id="purchasePage">
+        <div class="modal-dialog" style="display: inline-block">
+            <div class="modal-content" style="height:100%; max-height: 1000px; min-width: 800px;">
                 <!-- header -->
                 <div class="modal-header">
                     <h4 class="modal-title">GSC Payment</h4>
@@ -189,7 +202,7 @@
                 </div>
                 <!-- body -->
                 <div class="modal-body">
-                    <fieldset style="width:100%; margin-left: 0%; margin-right: 0%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
+                    <fieldset style="height:80%; width:100%; margin-left: 0%; margin-right: 0%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
                         <label> <span style="font-size:20px; font-weight:700">GSC ID</span><br>
                            <input class="form-control" style="width:150px" type="text" id="payID">
                         </label><br><br>
@@ -200,7 +213,7 @@
 
                         <label> <span style="font-size:20px; font-weight:700">Result</span>
                         </label>
-                        <div class="form-control" style="height: 200px; overflow: scroll" id="payResponse"></div>
+                        <div class="form-control" style="height: 40%; overflow: scroll" id="payResponse"></div>
                     </fieldset>
                 </div>
                 <!-- Footer -->
@@ -260,6 +273,7 @@
 
     // MetaMask injects the web3 library
     window.onload = function () {
+
         var GchContract = web3.eth.contract(ABI).at(contractAddr);
 
         if (typeof web3 === 'undefined') {
@@ -468,7 +482,6 @@
         });
         */
     }
-
 </script>
 
 <!-- Bootstrap core JavaScript -->

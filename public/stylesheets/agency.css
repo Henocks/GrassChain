@@ -212,7 +212,6 @@ header.masthead {
   margin: 0; }
 
 .portfolio-modal .modal-content {
-
   min-height: 100%;
   padding: 100px 0;
   text-align: center;
@@ -519,7 +518,7 @@ ul.social-buttons {
   .btn-primary:hover {
     color: white;
     border-color: #f6bf01;
-    background-color: #fec503; }
+    background-color: green; }
   .btn-primary.active, .btn-primary:active,
   .open > .btn-primary.dropdown-toggle {
     color: white;
