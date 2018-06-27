@@ -54,16 +54,16 @@
     <fieldset style="width:70%; margin-left: 15%; margin-right: 15%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 30px; font-family: 'Nanum Square'">
         <h1 style="text-align: center; font-weight:700; margin-top:5%; margin-bottom: 5%">GSC 표준 계약서</h1>
         <label> <span style="font-size:20px; font-weight:700">공급망 주소 목록</span> <br> 형식 : 0x123,0xaba,...<br>
-            <input class="form-control" style="width:500%" type="text" id="addrList">
+            <input class="form-control" style="width:500%; max-width: 500px" type="text" id="addrList">
         </label><br><br>
         <label> <span style="font-size:20px; font-weight:700">판매 대금 분배 비율</span> <br> 형식 : 10,20,50,...<br>
-            <input class="form-control" style="width:500%" type="text" id="distList">
+            <input class="form-control" style="width:500%; max-width: 500px" type="text" id="distList">
         </label><br><br>
         <label> <span style="font-size:20px; font-weight:700">생산자 담보(Deposit) 금액</span> <br>
-            <input class="form-control" style="width:100%" type="text" id="deposit">Ether
+            <input class="form-control" style="width:100%; max-width: 500px" type="text" id="deposit">Ether
         </label><br><br>
         <label> <span style="font-size:20px; font-weight:700">소비자 지불 예정 금액</span> <br>
-            <input class="form-control" style="width:115%" type="text" id="value">Ether
+            <input class="form-control" style="width:115%; max-width: 500px" type="text" id="value">Ether
         </label><br><br><br><br>
 
         <button class="btn btn-xl" onclick="create()" style="height : 50px; width:30%; margin-left: 35%; margin-right: 35%">Create GSC!</button><br><br>
@@ -90,6 +90,7 @@
             </span>
                 <h2 class="service-heading" data-target="#trackPage" data-toggle="modal">Track</h2>
                 <p class="text-muted">GSC를 추적해보세요! 가장 투명한 유통 기록입니다.<br>Ethereum 블록체인 플랫폼을 기반으로 운영됩니다.</p>
+                <button class="btn-warning" data-target="#trackPage" data-toggle="modal">Track</button>
             </div>
 
             <div class="col-md-4">
@@ -99,6 +100,7 @@
             </span>
                 <h2 class="service-heading" data-target="#verifyPage" data-toggle="modal">Verify</h2>
                 <p class="text-muted">중간 유통자라면, 유통 단계를 마치고 인증하세요!<br>소비자의 결제 직후 유통 수수료가 분배됩니다.</p>
+                <button class="btn-warning" data-target="#verifyPage" data-toggle="modal">Verify</button>
             </div>
 
             <div class="col-md-4">
@@ -108,6 +110,7 @@
             </span>
                 <h2 class="service-heading" data-target="#purchasePage" data-toggle="modal">Purchase</h2>
                 <p class="text-muted">GSC를 통해 농산물을 구매하려면 바로 결제하세요!<br>Metamask 지갑의 Ether로 결제할 수 있습니다.</p>
+                <button class="btn-warning" data-target="#purchasePage" data-toggle="modal">Purchase</button>
             </div>
         </div>
         <div class="row text-center" style="margin-top:5%">
@@ -118,6 +121,7 @@
             </span>
                 <h2 class="service-heading" data-target="#qrPage" data-toggle="modal">QR Code</h2>
                 <p class="text-muted">GSC 태그의 QR 코드를 출력할 수 있는 툴입니다.<br>다양한 정보를 담은 태그를 인쇄할 수 있습니다.</p>
+                <button class="btn-warning" data-target="#qrPage" data-toggle="modal">QR Code</button>
             </div>
             <div class="col-md-4">
             <span class="fa-stack fa-4x">
