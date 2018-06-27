@@ -39,7 +39,7 @@
             <div style="background-color:rgba(10, 10, 10, 0.7); padding : 3%; height : 450px; width : 100%" >
                 <div class="intro-heading"><img src="images/GrassChainLogo.png" style="margin-top: 10px; width: 60%"/></div>
                 <h1 style="margin-top:1%">Welcome to GrassChain Beta Page!</h1>
-                <h5 style="margin-top:1%" class="text-danger">NOTE : You need Metamask Wallet with Ropsten Testnet to use this.</h5>
+                <h5 style="margin-top:1%" class="text-danger">NOTE : You need Metamask Wallet(or CIPHER Browser) with Ropsten Testnet.</h5>
             </div>
         </div>
     </div>
@@ -88,9 +88,8 @@
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-chain fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
             </span>
-                <h2 class="service-heading" data-target="#trackPage" data-toggle="modal">Track</h2>
+                <h2 class="service-heading" data-target="#trackPage" data-toggle="modal"><button class="btn btn-app" data-target="#trackPage" data-toggle="modal">Track</button></h2>
                 <p class="text-muted">GSC를 추적해보세요! 가장 투명한 유통 기록입니다.<br>Ethereum 블록체인 플랫폼을 기반으로 운영됩니다.</p>
-                <button class="btn-warning" data-target="#trackPage" data-toggle="modal">Track</button>
             </div>
 
             <div class="col-md-4">
@@ -98,9 +97,8 @@
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-check-square-o fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%;"></i>
             </span>
-                <h2 class="service-heading" data-target="#verifyPage" data-toggle="modal">Verify</h2>
+                <h2 class="service-heading" data-target="#verifyPage" data-toggle="modal"><button class="btn btn-app" data-target="#verifyPage" data-toggle="modal">Verify</button></h2>
                 <p class="text-muted">중간 유통자라면, 유통 단계를 마치고 인증하세요!<br>소비자의 결제 직후 유통 수수료가 분배됩니다.</p>
-                <button class="btn-warning" data-target="#verifyPage" data-toggle="modal">Verify</button>
             </div>
 
             <div class="col-md-4">
@@ -108,9 +106,8 @@
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-credit-card fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
             </span>
-                <h2 class="service-heading" data-target="#purchasePage" data-toggle="modal">Purchase</h2>
+                <h2 class="service-heading" data-target="#purchasePage" data-toggle="modal"><button class="btn btn-app" data-target="#purchasePage" data-toggle="modal">Purchase</button></h2>
                 <p class="text-muted">GSC를 통해 농산물을 구매하려면 바로 결제하세요!<br>Metamask 지갑의 Ether로 결제할 수 있습니다.</p>
-                <button class="btn-warning" data-target="#purchasePage" data-toggle="modal">Purchase</button>
             </div>
         </div>
         <div class="row text-center" style="margin-top:5%">
@@ -119,9 +116,9 @@
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-qrcode fa-stack-1x fa-inverse" style="background-color:limegreen; border-radius:50%"></i>
             </span>
-                <h2 class="service-heading" data-target="#qrPage" data-toggle="modal">QR Code</h2>
+                <h2 class="service-heading" data-target="#qrPage" data-toggle="modal"><button class="btn btn-app" data-target="#qrPage" data-toggle="modal">QR Code</button></h2>
                 <p class="text-muted">GSC 태그의 QR 코드를 출력할 수 있는 툴입니다.<br>다양한 정보를 담은 태그를 인쇄할 수 있습니다.</p>
-                <button class="btn-warning" data-target="#qrPage" data-toggle="modal">QR Code</button>
+
             </div>
             <div class="col-md-4">
             <span class="fa-stack fa-4x">
@@ -197,8 +194,8 @@
         </div>
     </div>
     <div class="modal fade" id="purchasePage">
-        <div class="modal-dialog" style="display: inline-block">
-            <div class="modal-content" style="height:100%; max-height: 1000px; min-width: 800px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <!-- header -->
                 <div class="modal-header">
                     <h4 class="modal-title">GSC Payment</h4>
