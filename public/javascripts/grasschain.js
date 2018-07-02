@@ -3,14 +3,15 @@ const contractAddr = "0xE8720CB8b80ffb4D93BeE736C624dc547603fc49";
 const GABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"vaultID","type":"uint256"}],"name":"terminateGRC","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"vaultList","outputs":[{"name":"master","type":"address"},{"name":"value","type":"uint256"},{"name":"total","type":"uint256"},{"name":"timestamp","type":"uint256"},{"name":"status","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"depositGRC","outputs":[{"name":"success","type":"bool"},{"name":"vID","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"burnFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"vaultID","type":"uint256"}],"name":"stakeGRC","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"},{"name":"_extraData","type":"bytes"}],"name":"approveAndCall","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"initialSupply","type":"uint256"},{"name":"tokenName","type":"string"},{"name":"tokenSymbol","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Burn","type":"event"}];
 const grcAddr = "0x1179cf51c590794b0897586bc83a8d82ef8a243b";
 
+var GchContract = web3.eth.contract(ABI).at(contractAddr);
+var GrcContract = web3.eth.contract(GABI).at(grcAddr);
+
 // MetaMask injects the web3 library
 window.onload = function () {
-    var GchContract = web3.eth.contract(ABI).at(contractAddr);
-    var GrcContract = web3.eth.contract(GABI).at(grcAddr);
-
     if (typeof web3 === 'undefined') {
-        document.getElementById('meta-mask-required').innerHTML = 'You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this example'
+        document.getElementById('meta-mask-required').innerHTML = 'You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this.'
     }
+
     GchContract.GSCCount.call(function (error, result) {
         if (!error) {
             console.log(result);
@@ -19,7 +20,6 @@ window.onload = function () {
             console.log("GSCCount error!");
         }
     });
-
     GrcContract.balanceOf(web3.eth.coinbase, {
         from: web3.eth.coinbase,
         to: grcAddr,
@@ -27,7 +27,7 @@ window.onload = function () {
     }, function (error, result) {
         if (!error) {
             console.log(result);
-            document.getElementById('grcCounter').innerHTML = '<h2>당신의 GrassCoin 잔고 : ' + numberComma(result) + 'GRC (KRW ' + numberComma(result*13) + ')</h2>'
+            document.getElementById('grcCounter').innerHTML = '<h2>GrassCoin 잔고 : ' + numberComma(result) + 'GRC <br /><h4>(KRW ' + numberComma(result*203.63) + ')<h4></h2><br /><h4>1 GRC = 203.63원</h4>'
         } else {
             console.log("GRCCount error!");
         }
@@ -35,9 +35,8 @@ window.onload = function () {
 }
 
 function create() {
-    var GchContract = web3.eth.contract(ABI).at(contractAddr);
-    var Gchain;
     var Value = web3.toWei(document.getElementById("value").value, 'ether');
+    var Gchain;
     var Ratio;// = [8, 8, 8];
     Gchain = document.getElementById("addrList").value.split(',');
     Ratio = document.getElementById("distList").value.split(',');
@@ -57,7 +56,6 @@ function create() {
 }
 
 function createTag() {
-    var GchContract = web3.eth.contract(ABI).at(contractAddr);
     var GSCID = document.getElementById("qrID").value;
     var Response;
     var Gdat = new Array();
@@ -94,8 +92,6 @@ function printTag(){
 }
 
 function track() {
-    var GchContract = web3.eth.contract(ABI).at(contractAddr);
-    var GSCID = document.getElementById("trackID").value;
     var Ratio = new Array();
     var Gdat = new Array();
     var Ghistory = new Array();
@@ -166,7 +162,6 @@ function track() {
 }
 
 function verify() {
-    var GchContract = web3.eth.contract(ABI).at(contractAddr);
     var GSCID = document.getElementById("verifyID").value;
     GchContract.verify(GSCID, {
         from: web3.eth.coinbase,
@@ -183,7 +178,6 @@ function verify() {
 }
 
 function payCheck() {
-    var GchContract = web3.eth.contract(ABI).at(contractAddr);
     var GSCID = document.getElementById("payID").value;
 
     GchContract.GSCList.call(GSCID, function (error, result) {
@@ -197,7 +191,6 @@ function payCheck() {
 }
 
 function pay() {
-    var GchContract = web3.eth.contract(ABI).at(contractAddr);
     var GSCID = document.getElementById("payID").value;
 
     GchContract.pay(GSCID, {
