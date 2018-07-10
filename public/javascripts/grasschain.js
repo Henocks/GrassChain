@@ -11,7 +11,6 @@ window.onload = function () {
     if (typeof web3 === 'undefined') {
         document.getElementById('meta-mask-required').innerHTML = 'You need <a href="https://metamask.io/">MetaMask</a> browser plugin to run this.'
     }
-
     GchContract.GSCCount.call(function (error, result) {
         if (!error) {
             console.log(result);
@@ -32,6 +31,7 @@ window.onload = function () {
             console.log("GRCCount error!");
         }
     });
+    track();
 }
 
 function create() {
