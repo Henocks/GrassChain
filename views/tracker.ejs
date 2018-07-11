@@ -8,23 +8,23 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/font.css">
 </head>
 <body>
+
 <div id="trackPage">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- header -->
             <div class="modal-header">
                 <h4 class="modal-title">GSC Tracker</h4>
-                <button class="btn btn-xl" onclick="track()" onload="track()">Track GSC!</button>
+                <button class="btn btn-xl" onclick="track();" onload="track();">Track GSC!</button>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- body -->
             <div class="modal-body">
                 <fieldset style="width:100%; margin-left: 0%; margin-right: 0%; background-color: whitesmoke; border: 5px solid green; border-radius: 10px; padding: 20px; font-family: 'Nanum Square'">
                     <label> <span style="font-size:20px; font-weight:700">GSC ID</span>
-                        <input class="form-control" type="text" id="trackID" placeholder="2">
+                        <input class="form-control" type="text" id="trackID">
                     </label><br>
-
-                    <label> <span style="font-size:20px; font-weight:700">Result</span></label>
+                    <span style="font-size:20px; font-weight:700">Result</span></label>
                     <div class="form-control" style="height: 470px; overflow: scroll; word-break: break-all" id="trackResponse"></div>
 
                 </fieldset>
@@ -47,5 +47,14 @@
 
 <!-- Custom scripts for this template -->
 <script src="javascripts/agency.js"></script>
+
+<script>
+    var idVal = 2;
+    document.getElementById('trackID').value = idVal;
+    track();
+    track();
+    track();
+    track();
+</script>
 
 </html>

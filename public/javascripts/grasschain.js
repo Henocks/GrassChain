@@ -76,7 +76,8 @@ function createTag() {
         width : 100,
         height : 100
     });
-    qrCode.makeCode("GSC ID : "+GSCID);
+    qrCode.makeCode(GSCID);
+    //qrCode.makeCode("GSC ID : "+GSCID);
 }
 
 function printTag(){
