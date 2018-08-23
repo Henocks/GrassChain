@@ -26,7 +26,7 @@ window.onload = function () {
     }, function (error, result) {
         if (!error) {
             console.log(result);
-            document.getElementById('grcCounter').innerHTML = '<h2>GrassCoin 잔고 : ' + numberComma(result) + 'GRC <br /><h4>(KRW ' + numberComma(result*203.63) + ')<h4></h2><br /><h4>1 GRC = 203.63원 (Test Value)</h4>'
+            document.getElementById('grcCounter').innerHTML = '<h2>GrassCoin 잔고 : ' + numberComma(result) + 'GRC <br /><h4>(KRW ' + numberComma(result*845.37) + ')<h4></h2><br /><h4>1 GRC = 845.37원 (Test Value)</h4>'
         } else {
             console.log("GRCCount error!");
         }
